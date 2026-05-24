@@ -1,0 +1,28 @@
+# Claude Code working state (lokalne, nie commitujemy)
+.claude/memory/
+.claude/local/
+.claude/projects/
+.claude/settings.local.json
+.claude/.last-session
+
+# Obsidian working state
+obsidian-vault/.obsidian/workspace.json
+obsidian-vault/.obsidian/workspace-mobile.json
+obsidian-vault/.obsidian/cache/
+obsidian-vault/.obsidian/plugins/*/data.json
+obsidian-vault/.trash/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+*.swp
+*~
+
+# Env (na wypadek gdybyśmy kiedyś dodali)
+.env
+.env.local
+.env.*.local

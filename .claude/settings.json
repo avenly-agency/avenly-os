@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "Write(obsidian-vault/**)",
+      "Write(.claude/memory/**)",
+      "Edit(obsidian-vault/**)",
+      "Edit(.claude/agents/**)",
+      "Edit(.claude/commands/**)",
+      "Edit(CLAUDE.md)",
+      "Edit(README.md)",
+      "Bash(git status:*)",
+      "Bash(git pull:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git branch:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "Bash(git add:*)",
+      "Bash(curl:*)",
+      "Bash(rm:*)",
+      "Write(c:/Users/Start/Desktop/avenly-crm/**)",
+      "Write(c:/Users/Start/Desktop/avenly-web/**)",
+      "Edit(c:/Users/Start/Desktop/avenly-crm/**)",
+      "Edit(c:/Users/Start/Desktop/avenly-web/**)"
+    ]
+  }
+}
