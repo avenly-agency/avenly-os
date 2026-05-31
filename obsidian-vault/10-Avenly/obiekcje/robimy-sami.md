@@ -11,7 +11,7 @@ crm:
 # Robimy sami / mamy w zespole kogoś
 
 **Strategia:** nie atakujemy in-house. Pokazujemy ROLĘ agencji jako outside-perspective + speed.
-
+ff
 **Skrypt:**
 
 > _Super że macie kogoś. My pracujemy z firmami które chcą [konkretny projekt] w 2 tygodnie zamiast 2 miesięcy — outside-perspective i krócej. Jak kiedyś będziecie chcieli przyspieszyć projekt albo dostać świeże oko na coś co utknęło, jestem na maila._

@@ -4,5 +4,13 @@
       "modifiers": [],
       "key": "F5"
     }
+  ],
+  "app:reload": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "R"
+    }
   ]
 }
