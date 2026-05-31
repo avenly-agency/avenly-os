@@ -26,3 +26,7 @@ desktop.ini
 .env
 .env.local
 .env.*.local
+
+# Cache curli (refreshable z CRM, nie chcemy w git'cie)
+scripts/knowledge.json
+scripts/niches.json

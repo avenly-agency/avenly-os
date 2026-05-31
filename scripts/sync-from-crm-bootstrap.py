@@ -50,7 +50,8 @@ def write_md(path, frontmatter, body):
     return path
 
 # ============= KNOWLEDGE_BASE =============
-with open("/tmp/knowledge.json", encoding="utf-8") as f:
+script_dir = Path(__file__).parent
+with open(script_dir / "knowledge.json", encoding="utf-8") as f:
     kb = json.load(f)
 
 kb_created = []
@@ -91,7 +92,7 @@ for title, reason in kb_skipped:
 print()
 
 # ============= NICHES =============
-with open("/tmp/niches.json", encoding="utf-8") as f:
+with open(script_dir / "niches.json", encoding="utf-8") as f:
     nm = json.load(f)
 
 niche_files = []
