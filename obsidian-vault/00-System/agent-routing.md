@@ -10,6 +10,29 @@ Mapa wszystkich agentów: kiedy każdy jest wołany, który model używa, co pot
 | `social-media-strategist` | Sonnet | Strategia social | "plan na miesiąc", "kalendarz IG", "strategia FB", "mix contentowy", "kampania social" |
 | `copywriter` | Sonnet | Konkretne teksty | "napisz post", "draft maila", "headline", "caption", "landing copy", "treść reklamy", "oferta" |
 
+## Pliki wiedzy (vault `10-Avenly/`) — co każdy agent powinien czytać
+
+**Vault używa atomicznych plików w podfolderach kategorii CRM** (1 plik = 1 wpis `knowledge_base`). Każdy agent czyta przez Glob/Grep zamiast Read pojedynczego pliku.
+
+| Co | Gdzie | Kto czyta |
+|---|---|---|
+| Kim jesteśmy, misja, wartość, wyróżniki, proces, portfolio | `10-Avenly/agencja/*.md` (6 atomic) | Wszyscy agenci |
+| Pełna oferta (7 usług) | `10-Avenly/uslugi/*.md` (7 atomic) | copywriter (oferty), sales-strategist, chatbot |
+| Playbook obiekcji (8 obiekcji + skrypty) | `10-Avenly/obiekcje/*.md` (8 atomic) | sales-strategist, cold-outreach, copywriter (follow-up) |
+| Case studies | `10-Avenly/social_proof/*.md` + `50-Reference/case-studies.md` | wszystkie agenty (do social proof) |
+| Ton — atomiczne wpisy z CRM | `10-Avenly/ton/*.md` (synced) | copywriter (zawsze), cold-outreach |
+| Follow-up szablony | `10-Avenly/followup/*.md` (synced) | cold-outreach |
+| Brand voice (długa narracja) | `10-Avenly/brand-voice.md` | copywriter, social-media-strategist |
+| Ton rozszerzony (narracja) | `10-Avenly/ton-komunikacji.md` | copywriter |
+| Content pillars (social mix + hashtagi) | `10-Avenly/content-pillars.md` | social-media-strategist (zawsze) |
+| Target audience (archetypy) | `10-Avenly/target-audience.md` | copywriter, sales-strategist, social-media-strategist |
+| Per-nisza wiedza (objekcje, persona, hooks) | `30-Niches/{slug}/*.md` (synced z CRM `niches`) | cold-outreach (gdy lead z niszy), per-nisza agenty (TBD) |
+| Per-klient wiedza | `20-Clients/{slug}/*.md` | per-klient agenty (TBD) |
+| Aktywna robota | `40-Projects/*` | social-media-strategist (kalendarz, historia) |
+| Referencje rozszerzone | `50-Reference/*` | wszystkie agenty wg potrzeb |
+
+**Sync vault ↔ CRM** — patrz `00-System/sync-vault-crm.md` (TBD po fazie 1.3).
+
 ## Planowane (faza 1+)
 
 | Agent | Model | Domena | Status |

@@ -9,10 +9,23 @@ Jesteś copywriterem agencji Avenly. Mówisz po polsku.
 
 ## Przed pisaniem zawsze przeczytaj
 
-1. `obsidian-vault/10-Avenly/brand-voice.md` (jeśli piszesz dla Avenly)
-2. `obsidian-vault/20-Clients/{slug}/tone.md` (jeśli dla klienta)
-3. `obsidian-vault/30-Templates/{typ}.md` — szablon dla danego typu tekstu (`blog-post.md` / `cold-email.md` / `social-post.md` / `proposal.md`)
-4. `obsidian-vault/10-Avenly/ton-komunikacji.md` — granice (czego nie piszemy)
+1. **Brand voice** (jak Avenly mówi):
+   - `obsidian-vault/10-Avenly/brand-voice.md` (długa narracja)
+   - `obsidian-vault/10-Avenly/ton-komunikacji.md` (rozszerzona narracja granic)
+   - Glob `obsidian-vault/10-Avenly/ton/*.md` (atomiczne wpisy synced z CRM `category=ton`)
+2. **Klient (jeśli dla klienta):**
+   - `obsidian-vault/20-Clients/{slug}/tone.md` + `brief.md`
+   - Jeśli klient ma niszę: `obsidian-vault/30-Niches/{niche-slug}/*.md`
+3. **Template odpowiedni dla typu tekstu:**
+   - `obsidian-vault/30-Templates/blog-post.md` (blog)
+   - `obsidian-vault/30-Templates/cold-email.md` (cold mail)
+   - `obsidian-vault/30-Templates/social-post.md` (social)
+   - `obsidian-vault/30-Templates/proposal.md` (oferta)
+4. **Wiedza o usługach (gdy piszesz o konkretnej usłudze):**
+   - Konkretny plik z `obsidian-vault/10-Avenly/uslugi/{slug}.md`
+5. **Social proof (gdy potrzebny):**
+   - Glob `obsidian-vault/10-Avenly/social_proof/*.md`
+   - `obsidian-vault/50-Reference/case-studies.md` (rozszerzone case studies)
 
 Jeśli któryś plik jest pustym templatem ("STATUS: TEMPLATE") albo go nie ma — powiedz userowi i zapytaj jakie wytyczne stosować zanim zaczniesz, NIE zmyślaj stylu.
 
