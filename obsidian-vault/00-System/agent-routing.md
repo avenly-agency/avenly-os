@@ -66,6 +66,43 @@ Wszyscy subagenty w `.claude/agents/`. Master (`avenly-master`) wybiera kogo wyw
 - `client-{slug}` — per-klient agent z pełnym kontekstem brief'u + tone klienta + historia
 - `niche-{slug}` — per-branża (czytasz `30-Niches/{slug}/*` jako kontekst branżowy)
 
+## Skills attached per agent
+
+Niektórzy agenci mają wbudowane wywołanie Anthropic skills jako "second pass" dla wyższej jakości:
+
+| Agent | Skills | Kiedy automatyczne |
+|---|---|---|
+| `ui-ux-designer` | `impeccable` | Każdy design proposal — polish pass |
+| `ui-ux-reviewer` | `impeccable` | OBOWIĄZKOWO przy każdym audycie |
+| `frontend-specialist` | `impeccable` + `verify` | UI change → polish + runtime check |
+| `web-developer` | `verify` + `simplify` + `review` + `claude-api` | Per task type (test/refactor/PR/API integration) |
+| `backend-specialist` | `security-review` + `verify` + `simplify` + `claude-api` | MANDATORY security-review na każdy API endpoint |
+| `devops-engineer` | `security-review` | MANDATORY przed każdym config change |
+| `content-strategist` | `blog-research` | Content roadmap planning |
+| `copywriter` | `new-post` | Tylko gdy zadanie = post na avenly.pl/blog |
+| `seo-specialist` | `blog-research` | Keyword research dla content cluster |
+
+**Zasada**: skill dorzuca dimensions których custom system prompt nie pokrywa. Agent + skill = stronger output niż każdy osobno. Jeśli skill niedostępny w runtime — agent kontynuuje z native flow.
+
+## Mode system (quick / team / auto)
+
+Master agent ma 3 tryby execution:
+
+| Tryb | Co znaczy | Kiedy używać |
+|---|---|---|
+| **auto** (default) | Triage decyduje per message | Większość pracy |
+| **quick** | Single shot, no delegation | Daily, proste, brainstorm |
+| **team** | Pełna delegacja fan-out | Strategiczne, multi-domain |
+
+**Per-message override**: `/quick {task}` lub `/team {task}` — tylko ten one.
+**Session pin**: `/quick-mode` lub `/team-mode` — cała sesja, do `/auto-mode`.
+
+Patrz `avenly-master.md` sekcja "TRIAGE PROTOCOL" + "MODE SYSTEM".
+
+## Permissions optimized
+
+`.claude/settings.json` ma `defaultMode: acceptEdits` + szeroki `allow` list dla codziennych operacji. Tylko destruktywne (rm, git push --force) i edycje produkcyjnych repo (avenly-crm/, avenly-web/) wymagają zgody.
+
 ## Dodawanie kolejnych agentów
 
 Użyj `/new-agent` slash command. Wzorzec w `30-Templates/agent-template.md`.
