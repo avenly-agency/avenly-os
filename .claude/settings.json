@@ -1,34 +1,80 @@
 {
   "permissions": {
+    "defaultMode": "acceptEdits",
     "allow": [
       "Read(*)",
       "Glob(*)",
       "Grep(*)",
       "Write(obsidian-vault/**)",
-      "Write(.claude/memory/**)",
+      "Write(.claude/**)",
+      "Write(scripts/**)",
       "Edit(obsidian-vault/**)",
-      "Edit(.claude/agents/**)",
-      "Edit(.claude/commands/**)",
+      "Edit(.claude/**)",
       "Edit(CLAUDE.md)",
       "Edit(README.md)",
+
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(wc:*)",
+      "Bash(echo:*)",
+      "Bash(mkdir:*)",
+      "Bash(touch:*)",
+      "Bash(pwd:*)",
+      "Bash(which:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(diff:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(awk:*)",
+      "Bash(sed:*)",
+
       "Bash(git status:*)",
-      "Bash(git pull:*)",
       "Bash(git log:*)",
       "Bash(git diff:*)",
       "Bash(git branch:*)",
-      "Bash(ls:*)",
-      "Bash(mkdir:*)"
+      "Bash(git pull:*)",
+      "Bash(git fetch:*)",
+      "Bash(git show:*)",
+      "Bash(git stash:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)",
+
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(python:*)",
+      "Bash(pip:*)",
+
+      "Bash(curl * avenlycrm.vercel.app/*)",
+      "Bash(curl * api.github.com/*)",
+      "Bash(curl * raw.githubusercontent.com/*)"
     ],
+
     "ask": [
       "Bash(git push:*)",
-      "Bash(git commit:*)",
-      "Bash(git add:*)",
-      "Bash(curl:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
       "Bash(rm:*)",
+      "Bash(rmdir:*)",
+      "Bash(curl:*)",
       "Write(c:/Users/Start/Desktop/avenly-crm/**)",
-      "Write(c:/Users/Start/Desktop/avenly-web/**)",
       "Edit(c:/Users/Start/Desktop/avenly-crm/**)",
+      "Write(c:/Users/Start/Desktop/avenly-web/**)",
       "Edit(c:/Users/Start/Desktop/avenly-web/**)"
+    ],
+
+    "deny": [
+      "Bash(npm publish:*)",
+      "Bash(rm -rf /:*)",
+      "Bash(sudo rm:*)"
     ]
   }
 }
