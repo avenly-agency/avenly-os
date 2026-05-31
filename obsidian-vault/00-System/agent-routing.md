@@ -1,14 +1,42 @@
-# Agent Routing
+# Agent Routing — pełna mapa 30 subagentów
 
-Mapa wszystkich agentów: kiedy każdy jest wołany, który model używa, co potrafi.
+Wszyscy subagenty w `.claude/agents/`. Master (`avenly-master`) wybiera kogo wywołać.
 
-## Aktywne (faza 0)
+## Quick reference
 
-| Agent | Model | Domena | Wołasz gdy |
-|---|---|---|---|
-| `avenly-master` | Opus | Orkiestracja | Domyślny entry point. Zlecenie złożone, niejasne, lub wieloetapowe. |
-| `social-media-strategist` | Sonnet | Strategia social | "plan na miesiąc", "kalendarz IG", "strategia FB", "mix contentowy", "kampania social" |
-| `copywriter` | Sonnet | Konkretne teksty | "napisz post", "draft maila", "headline", "caption", "landing copy", "treść reklamy", "oferta" |
+| Trigger | Agent | Model |
+|---|---|---|
+| Default entry point | `avenly-master` | Opus |
+| "napisz post / mail / blog / copy" | `copywriter` | Opus |
+| "cold mail / outreach / follow-up" | `cold-outreach` | Opus |
+| "plan social / kalendarz IG" | `social-media-strategist` | Opus |
+| "strategia content / blog roadmap" | `content-strategist` | Opus |
+| "creatives / ad copy / hooki" | `ad-creative` | Opus |
+| "newsletter / sequence / email automation" | `email-marketer` | Opus |
+| "reel / video / podcast script" | `video-script-writer` | Opus |
+| "strategia sprzedaży / ICP / value prop" | `sales-strategist` | Opus |
+| "klient ma obiekcję X" | `objection-handler` | Opus |
+| "zamknięcie / negocjacja / retencja oferty" | `closer` | Opus |
+| "czy ten lead jest worth" | `lead-qualifier` | Haiku |
+| "SEO / keywords / audyt strony" | `seo-specialist` | Opus |
+| "Meta/Google Ads strategia" | `paid-ads-specialist` | Opus |
+| "raport miesięczny / analytics / anomalia" | `analytics-specialist` | Opus |
+| "growth / experimenty / hipotezy" | `growth-strategist` | Opus |
+| "implementacja kodu / architektura web" | `web-developer` | Opus |
+| "animacja / shader / performance UI" | `frontend-specialist` | Opus |
+| "endpoint API / RLS / n8n / DB schema" | `backend-specialist` | Opus |
+| "wireframe / mockup / design system" | `ui-ux-designer` | Opus |
+| "audyt design / kierunek wizualny" | `ui-ux-reviewer` | Opus |
+| "deploy / hosting / Cloudflare / .htaccess" | `devops-engineer` | Opus |
+| "strategia agencji / pivots / partnerships" | `business-advisor` | Opus |
+| "cash flow / runway / budget" | `financial-advisor` | Opus |
+| "podatki / VAT / JDG vs sp. z o.o." | `tax-advisor` | Opus |
+| "umowa / RODO / NDA / prawa autorskie" | `legal-advisor` | Opus |
+| "zatrudnienie / B2B vs UoP / rekrutacja" | `hr-advisor` | Opus |
+| "ile policzyć / packagi / discount" | `pricing-strategist` | Opus |
+| "research / fact-check / lookup" | `researcher` | Sonnet |
+| "analiza rynku / konkurencja / TAM" | `market-analyst` | Opus |
+| "analiza CRM / pipeline / leady patterns" | `crm-analyst` | Opus |
 
 ## Pliki wiedzy (vault `10-Avenly/`) — co każdy agent powinien czytać
 
@@ -16,53 +44,32 @@ Mapa wszystkich agentów: kiedy każdy jest wołany, który model używa, co pot
 
 | Co | Gdzie | Kto czyta |
 |---|---|---|
-| Kim jesteśmy, misja, wartość, wyróżniki, proces, portfolio | `10-Avenly/agencja/*.md` (6 atomic) | Wszyscy agenci |
-| Pełna oferta (7 usług) | `10-Avenly/uslugi/*.md` (7 atomic) | copywriter (oferty), sales-strategist, chatbot |
-| Playbook obiekcji (8 obiekcji + skrypty) | `10-Avenly/obiekcje/*.md` (8 atomic) | sales-strategist, cold-outreach, copywriter (follow-up) |
+| Kim jesteśmy, misja, wartość, wyróżniki, proces, portfolio | `10-Avenly/agencja/*.md` (6 atomic) | **Wszyscy agenci** (start kontekstu) |
+| Pełna oferta (7 usług) | `10-Avenly/uslugi/*.md` (7 atomic) | `copywriter`, `sales-strategist`, `cold-outreach`, `closer`, `pricing-strategist` |
+| Playbook obiekcji (8 obiekcji + skrypty) | `10-Avenly/obiekcje/*.md` (8 atomic) | `sales-strategist`, `cold-outreach`, `objection-handler`, `closer` |
 | Case studies | `10-Avenly/social_proof/*.md` + `50-Reference/case-studies.md` | wszystkie agenty (do social proof) |
-| Ton — atomiczne wpisy z CRM | `10-Avenly/ton/*.md` (synced) | copywriter (zawsze), cold-outreach |
-| Follow-up szablony | `10-Avenly/followup/*.md` (synced) | cold-outreach |
-| Brand voice (długa narracja) | `10-Avenly/brand-voice.md` | copywriter, social-media-strategist |
-| Ton rozszerzony (narracja) | `10-Avenly/ton-komunikacji.md` | copywriter |
-| Content pillars (social mix + hashtagi) | `10-Avenly/content-pillars.md` | social-media-strategist (zawsze) |
-| Target audience (archetypy) | `10-Avenly/target-audience.md` | copywriter, sales-strategist, social-media-strategist |
-| Per-nisza wiedza (objekcje, persona, hooks) | `30-Niches/{slug}/*.md` (synced z CRM `niches`) | cold-outreach (gdy lead z niszy), per-nisza agenty (TBD) |
+| Ton — atomiczne wpisy z CRM | `10-Avenly/ton/*.md` (synced) | `copywriter`, `cold-outreach`, `email-marketer`, `video-script-writer` |
+| Follow-up szablony | `10-Avenly/followup/*.md` (synced) | `cold-outreach`, `email-marketer` |
+| Brand voice (długa narracja) | `10-Avenly/brand-voice.md` | `copywriter`, `social-media-strategist`, `ad-creative`, `video-script-writer`, `ui-ux-designer` |
+| Ton rozszerzony (narracja) | `10-Avenly/ton-komunikacji.md` | `copywriter`, wszyscy piszący |
+| Content pillars (social mix + hashtagi) | `10-Avenly/content-pillars.md` | `social-media-strategist`, `content-strategist` |
+| Target audience (archetypy) | `10-Avenly/target-audience.md` | `copywriter`, `sales-strategist`, `social-media-strategist`, `paid-ads-specialist`, `ui-ux-designer` |
+| Per-nisza wiedza (objekcje, persona, hooks) | `30-Niches/{slug}/*.md` (synced z CRM `niches`) | `cold-outreach`, `objection-handler`, `social-media-strategist`, `ad-creative`, per-nisza agenty (TBD) |
 | Per-klient wiedza | `20-Clients/{slug}/*.md` | per-klient agenty (TBD) |
-| Aktywna robota | `40-Projects/*` | social-media-strategist (kalendarz, historia) |
+| Aktywna robota | `40-Projects/*` | `social-media-strategist` (kalendarz, historia) |
 | Referencje rozszerzone | `50-Reference/*` | wszystkie agenty wg potrzeb |
+| Tech stack | `50-Reference/tech-stack.md` | `web-developer`, `frontend-specialist`, `backend-specialist`, `devops-engineer`, `ui-ux-designer` |
+| avenly-web overview | `50-Reference/avenly-web-overview.md` | `web-developer`, `seo-specialist`, `ui-ux-reviewer`, `frontend-specialist` |
 
-**Sync vault ↔ CRM** — patrz `00-System/sync-vault-crm.md` (TBD po fazie 1.3).
+## Dynamiczne agenty (tworzone przez `/new-client` lub `/new-agent`)
 
-## Planowane (faza 1+)
+- `client-{slug}` — per-klient agent z pełnym kontekstem brief'u + tone klienta + historia
+- `niche-{slug}` — per-branża (czytasz `30-Niches/{slug}/*` jako kontekst branżowy)
 
-| Agent | Model | Domena | Status |
-|---|---|---|---|
-| `sales-strategist` | Opus | Strategia sprzedaży, scoring leadów, value prop, positioning | TBD faza 1 |
-| `cold-outreach` | Sonnet | Cold maile i follow-upy | TBD faza 1 |
-| `seo-specialist` | Sonnet | Keywords, audyty on-page, content brief | TBD faza 2 |
-| `business-advisor` | Opus | Strategiczne decyzje agencji (pricing, kierunek, pivoty) | TBD faza 2 |
-| `crm-analyst` | Sonnet | Analizy z Supabase (leady, klienci, wyniki) read-only | TBD faza 1 |
-| `researcher` | Haiku | Web research, fast lookups, fact-check | TBD faza 1 |
-| `developer` | Sonnet | Kod projektów klienckich (NIE avenly-web/-crm — to robisz Ty bezpośrednio) | TBD faza 2 |
-| `ui-ux-reviewer` | Opus | Audyty designu, kierunek wizualny | TBD faza 2 |
-| `content-strategist` | Sonnet | Strategia content marketingu (blog, video, lead magnets) | TBD faza 2 |
-| `ad-creative` | Sonnet | Creatives reklamowe, ad copy, hook'i video | TBD faza 2 |
-| `client-{slug}` | Sonnet | Per-klient agent z full kontekstem | TBD na każdego klienta |
+## Dodawanie kolejnych agentów
 
-## Wybór modelu — reguła kciuka
+Użyj `/new-agent` slash command. Wzorzec w `30-Templates/agent-template.md`.
 
-- **Opus** — strategia, decyzje wieloetapowe, audyt jakości, orkiestracja. Drogi → używaj świadomie.
-- **Sonnet** — większość pracy: copy, plany, analizy, kod, review. Domyślny wybór.
-- **Haiku** — ekstrakcja, formatowanie, lookup, klasyfikacja. Tani → spamuj.
+## Sync vault ↔ CRM
 
-## Zasada delegowania
-
-`avenly-master` zawsze deleguje do specjalisty zamiast robić sam. Wyjątek: prosty merge wyników od 2+ subagentów. Sam Opus piszący posty = strata puli + gorszy efekt niż wyspecjalizowany Sonnet.
-
-## Jak dodać nowego agenta
-
-1. Stwórz `.claude/agents/{nazwa}.md` z YAML frontmatter (`name`, `description`, `tools`, `model`) + system prompt
-2. Dodaj wpis do tej tabeli wyżej
-3. Zaktualizuj `avenly-master.md` w sekcji "Routing" żeby wiedział że istnieje
-4. Git commit + push → Bartek pull → obaj mają
-5. Test: napisz do mastera prośbę pasującą do nowego agenta — czy go wywoła
+`/sync-from-crm` (pull) i `/sync-to-crm` (push). Niches pull-only.
